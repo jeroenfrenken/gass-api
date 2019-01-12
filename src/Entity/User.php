@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -62,6 +64,16 @@ class User implements \JsonSerializable
      * @ORM\OneToMany(targetEntity="App\Entity\UserToken", mappedBy="user", cascade={"remove"}, orphanRemoval=true)
      */
     private $tokens;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Refuel", mappedBy="user", cascade={"remove"}, orphanRemoval=true)
+     */
+    private $refuels;
+
+    public function __construct()
+    {
+        $this->refuels = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -129,6 +141,37 @@ class User implements \JsonSerializable
     public function __toString()
     {
         return $this->getEmail();
+    }
+
+    /**
+     * @return Collection|Refuel[]
+     */
+    public function getRefuels(): Collection
+    {
+        return $this->refuels;
+    }
+
+    public function addRefuel(Refuel $refuel): self
+    {
+        if (!$this->refuels->contains($refuel)) {
+            $this->refuels[] = $refuel;
+            $refuel->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRefuel(Refuel $refuel): self
+    {
+        if ($this->refuels->contains($refuel)) {
+            $this->refuels->removeElement($refuel);
+            // set the owning side to null (unless already changed)
+            if ($refuel->getUser() === $this) {
+                $refuel->setUser(null);
+            }
+        }
+
+        return $this;
     }
 
 }

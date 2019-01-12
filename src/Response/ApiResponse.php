@@ -50,7 +50,7 @@ class ApiResponse
         return new JsonResponse([
             'ok' => true,
             'data' => $data
-        ],Response::HTTP_ACCEPTED);
+        ],Response::HTTP_OK);
 
     }
 
@@ -60,6 +60,15 @@ class ApiResponse
             'ok' => false,
             'message' => 'not authorized'
         ], Response::HTTP_UNAUTHORIZED);
+
+    }
+
+    static function notFound() {
+
+        return new JsonResponse([
+            'ok' => false,
+            'message' => 'Resource not found'
+        ], Response::HTTP_NOT_FOUND);
 
     }
 

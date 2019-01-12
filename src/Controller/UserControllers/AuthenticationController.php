@@ -85,6 +85,14 @@ class AuthenticationController extends AbstractController
             return ApiResponse::rateLimit();
         }
 
+        json_decode($request->getContent());
+
+        if (json_last_error() !== JSON_ERROR_NONE) {
+
+            return ApiResponse::badRequest('content', 'no json content');
+
+        }
+
         /** @var User $user */
         $user = $serializer->deserialize(
             $request->getContent(), User::class, 'json'

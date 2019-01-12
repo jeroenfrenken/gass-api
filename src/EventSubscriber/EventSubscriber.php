@@ -99,7 +99,6 @@ class EventSubscriber implements EventSubscriberInterface
             $token = new UsernamePasswordToken($user->getUser(), null, 'main', []);
 
             $this->container->get('security.token_storage')->setToken($token);
-            $this->container->get('session')->set('_security_main', serialize($token));
 
         }
 

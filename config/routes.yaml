@@ -14,4 +14,27 @@ user_get:
   methods: [ GET ]
 
 
+refuel_get_all:
+  path: /refuel/get
+  controller: App\Controller\RefuelControllers\RefuelController::getAll
+  methods: [ GET ]
 
+refuel_get:
+  path: /refuel/get/{id}
+  controller: App\Controller\RefuelControllers\RefuelController::get
+  methods: [ GET ]
+
+refuel_create:
+  path: /refuel/create
+  controller: App\Controller\RefuelControllers\RefuelController::create
+  methods: [ POST ]
+
+refuel_update:
+  path: /refuel/update/{id}
+  controller: App\Controller\RefuelControllers\RefuelController::update
+  methods: [ PUT ]
+
+refuel_delete:
+  path: /refuel/delete/{id}
+  controller: App\Controller\RefuelControllers\RefuelController::delete
+  methods: [ DELETE ]
