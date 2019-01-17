@@ -27,11 +27,11 @@ class AuthenticationController extends AbstractController
         Request $request
     ) {
 
-        if (
-            !$actionRegisterService->canDoAction($request->getClientIp(), ActionRegisterService::ACTION_LOGIN)
-        ) {
-            return ApiResponse::rateLimit();
-        }
+//        if (
+//            !$actionRegisterService->canDoAction($request->getClientIp(), ActionRegisterService::ACTION_LOGIN)
+//        ) {
+//            return ApiResponse::rateLimit();
+//        }
 
         /** @var User $user */
         $user = $serializer->deserialize(
@@ -62,9 +62,11 @@ class AuthenticationController extends AbstractController
 
             $actionRegisterService->registerAction($request->getClientIp(), ActionRegisterService::ACTION_LOGIN);
 
-            return ApiResponse::okResponse([
-                'token' => $token
-            ]);
+            $array = $account->jsonSerialize();
+
+            $array['token'] = $token;
+
+            return ApiResponse::okResponse($array);
 
         }
 
@@ -79,11 +81,11 @@ class AuthenticationController extends AbstractController
         Request $request
     ) {
 
-        if (
-            !$actionRegisterService->canDoAction($request->getClientIp(), ActionRegisterService::ACTION_REGISTER)
-        ) {
-            return ApiResponse::rateLimit();
-        }
+//        if (
+//            !$actionRegisterService->canDoAction($request->getClientIp(), ActionRegisterService::ACTION_REGISTER)
+//        ) {
+//            return ApiResponse::rateLimit();
+//        }
 
         json_decode($request->getContent());
 

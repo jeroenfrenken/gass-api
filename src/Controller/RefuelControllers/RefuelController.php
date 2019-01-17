@@ -30,6 +30,17 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 class RefuelController extends AbstractController implements ApiAuthenticationInterface
 {
 
+    /**
+     * @OA\Get(
+     *     operationId="Get all refuels of a user",
+     *     path="/refuel/get",
+     *     @OA\Response(
+     *          response="200",
+     *          description="No error",
+     *          @OA\JsonContent(ref="#/components/schemas/User"),
+     *     )
+     * )
+     */
     public function getAll() {
 
         /** @var User $user */

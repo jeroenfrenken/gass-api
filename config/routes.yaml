@@ -38,3 +38,9 @@ refuel_delete:
   path: /refuel/delete/{id}
   controller: App\Controller\RefuelControllers\RefuelController::delete
   methods: [ DELETE ]
+
+#  TODO move to dev routes
+swagger:
+  path: /swagger
+  controller: App\Controller\DocumentationControllers\SwaggerController::getSwagger
+  methods: [ GET ]

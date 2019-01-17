@@ -59,6 +59,7 @@ class Refuel implements \JsonSerializable
 
     /**
      * @ORM\Column(type="string", length=150, nullable=true)
+     * @Assert\Blank()
      */
     private $picturePath;
 
@@ -70,6 +71,7 @@ class Refuel implements \JsonSerializable
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Assert\Blank()
      */
     private $location;
 
