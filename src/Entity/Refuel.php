@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Controller\Services\UploadService;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -11,6 +12,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Refuel implements \JsonSerializable
 {
+
+    use UploadService;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -142,16 +146,21 @@ class Refuel implements \JsonSerializable
         return $this->picture;
     }
 
-    /**
-     * @param mixed $picture
-     */
-    public function setPicture($picture): void
+    public function setPicture($picture): self
     {
         $this->picture = $picture;
+
+        return $this;
     }
 
     public function getPicturePath(): ?string
     {
+        if ($this->picturePath !== null) {
+
+            return "https://static.gassapp.nl/" . $this->getPublicUploadDir() . $this->picturePath;
+
+        }
+
         return $this->picturePath;
     }
 
@@ -225,6 +234,15 @@ class Refuel implements \JsonSerializable
     public function setCreatedAtValue()
     {
         $this->setDate(new \DateTime('now'));
+
+        if ($this->getPicture() !== null) {
+
+            $filePath = $this->uploadFile($this->getPicture());
+
+            $this->setPicturePath($filePath);
+
+        }
+
     }
 
     public function jsonSerialize()

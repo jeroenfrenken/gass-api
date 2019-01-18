@@ -58,7 +58,7 @@ class RefuelController extends AbstractController implements ApiAuthenticationIn
 
     }
 
-    public function get(string $id)
+    public function getRefuel(string $id)
     {
 
         /** @var User $user */

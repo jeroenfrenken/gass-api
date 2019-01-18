@@ -21,7 +21,7 @@ refuel_get_all:
 
 refuel_get:
   path: /refuel/get/{id}
-  controller: App\Controller\RefuelControllers\RefuelController::get
+  controller: App\Controller\RefuelControllers\RefuelController::getRefuel
   methods: [ GET ]
 
 refuel_create:
