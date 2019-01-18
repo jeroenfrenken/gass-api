@@ -7,6 +7,6 @@
 /public/bundles/
 /var/
 /vendor/
-/images/*
-!/images/.gitkeep
+/image/*
+!/image/.gitkeep
 ###< symfony/framework-bundle ###
