@@ -14,11 +14,13 @@ use App\Entity\User;
 use App\Interfaces\ApiAuthenticationInterface;
 use App\Response\ApiResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Serializer\Exception\NotNormalizableValueException;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Flex\Response;
 
 /**
  * TODO: refuel upload picture
@@ -204,7 +206,8 @@ class RefuelController extends AbstractController implements ApiAuthenticationIn
         Request $request,
         SerializerInterface $serializer,
         ValidatorInterface $validator
-    ) {
+    )
+    {
 
         json_decode($request->getContent());
 

@@ -39,6 +39,11 @@ refuel_delete:
   controller: App\Controller\RefuelControllers\RefuelController::delete
   methods: [ DELETE ]
 
+refuel_get_image:
+  path: /image/{id}
+  controller: App\Controller\RefuelControllers\ImageController::image
+  methods: [ GET ]
+
 #  TODO move to dev routes
 swagger:
   path: /swagger

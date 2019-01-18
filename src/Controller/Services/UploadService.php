@@ -9,13 +9,14 @@
 namespace App\Controller\Services;
 
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Finder\Finder;
 
 trait UploadService
 {
 
-    private $rootDir = __DIR__ . "/../../../public/";
+    private $rootDir = __DIR__ . "/../../../";
 
-    private $publicDir = "images/";
+    private $publicDir = "image/";
 
     protected function getFullUploadDir() {
 
