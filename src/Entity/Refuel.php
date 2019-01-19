@@ -159,9 +159,11 @@ class Refuel implements \JsonSerializable
 
             return "https://static.gassapp.nl/" . $this->getPublicUploadDir() . $this->picturePath;
 
-        }
+        } else {
 
-        return $this->picturePath;
+            return "";
+
+        }
     }
 
     public function setPicturePath(?string $picturePath): self
