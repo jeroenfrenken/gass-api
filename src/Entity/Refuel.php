@@ -251,6 +251,7 @@ class Refuel implements \JsonSerializable
     {
         return [
             '_id' => $this->getId(),
+            'date' => $this->getDate(),
             'liters' => $this->getLiters(),
             'price' => $this->getPrice(),
             'kilometers' => $this->getKilometers(),
