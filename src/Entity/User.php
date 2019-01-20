@@ -30,7 +30,9 @@ class User implements \JsonSerializable
      *     min = 4,
      *     max = 255
      * )
-     * @Assert\Email()
+     * @Assert\Email(
+     *     message="Email is not valid"
+     * )
      */
     private $email;
 

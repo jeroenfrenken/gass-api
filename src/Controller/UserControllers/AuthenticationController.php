@@ -81,24 +81,27 @@ class AuthenticationController extends AbstractController
         Request $request
     ) {
 
-//        if (
-//            !$actionRegisterService->canDoAction($request->getClientIp(), ActionRegisterService::ACTION_REGISTER)
-//        ) {
-//            return ApiResponse::rateLimit();
-//        }
-
         json_decode($request->getContent());
 
         if (json_last_error() !== JSON_ERROR_NONE) {
 
-            return ApiResponse::badRequest('content', 'no json content');
+            return ApiResponse::badRequest('content', 'Please fill in al the fields');
 
         }
 
-        /** @var User $user */
-        $user = $serializer->deserialize(
-            $request->getContent(), User::class, 'json'
-        );
+        try {
+
+            /** @var User $user */
+            $user = $serializer->deserialize(
+                $request->getContent(), User::class, 'json'
+            );
+
+
+        }  catch (\Exception $e) {
+
+            return ApiResponse::badRequest('content', 'Please fill in al the fields');
+
+        }
 
         $errors = $validator->validate($user);
 
