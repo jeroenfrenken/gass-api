@@ -230,6 +230,10 @@ class RefuelController extends AbstractController implements ApiAuthenticationIn
 
             return ApiResponse::badRequest('NotNormalizableValueException', 'A value is not right formatted');
 
+        } catch (\Exception $e ) {
+
+            return ApiResponse::badRequest('content', 'Please fill in all the fields');
+
         }
 
         $errors = $validator->validate($refuel);
