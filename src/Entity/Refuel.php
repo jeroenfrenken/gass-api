@@ -30,7 +30,9 @@ class Refuel implements \JsonSerializable
 
     /**
      * @ORM\Column(type="float")
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(
+     *     message="{{ value }} can not be blank"
+     * )
      * @Assert\Type(
      *     type = "float",
      *     message = "The value {{ value }} is not a valid {{ type }}"
@@ -40,7 +42,9 @@ class Refuel implements \JsonSerializable
 
     /**
      * @ORM\Column(type="float")
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(
+     *     message="{{ value }} can not be blank"
+     * )
      * @Assert\Type(
      *     type = "float",
      *     message = "The value {{ value }} is not a valid {{ type }}"
@@ -50,7 +54,9 @@ class Refuel implements \JsonSerializable
 
     /**
      * @ORM\Column(type="float")
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(
+     *     message="{{ value }} can not be blank"
+     * )
      * @Assert\Type(
      *     type = "float",
      *     message = "The value {{ value }} is not a valid {{ type }}"
