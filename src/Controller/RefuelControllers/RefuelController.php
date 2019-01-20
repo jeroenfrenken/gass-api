@@ -38,8 +38,7 @@ class RefuelController extends AbstractController implements ApiAuthenticationIn
      *     path="/refuel/get",
      *     @OA\Response(
      *          response="200",
-     *          description="No error",
-     *          @OA\JsonContent(ref="#/components/schemas/User"),
+     *          description="No error"
      *     )
      * )
      */

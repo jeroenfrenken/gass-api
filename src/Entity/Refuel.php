@@ -73,18 +73,6 @@ class Refuel implements \JsonSerializable
      */
     private $picturePath;
 
-    //Holds the uploading latitude
-    private $lat;
-
-    //Holds the uploading longitude
-    private $long;
-
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     * @Assert\Blank()
-     */
-    private $location;
-
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="refuels")
      * @ORM\JoinColumn(nullable=false)
@@ -179,18 +167,6 @@ class Refuel implements \JsonSerializable
         return $this;
     }
 
-    public function getLocation(): ?string
-    {
-        return $this->location;
-    }
-
-    public function setLocation(?string $location): self
-    {
-        $this->location = $location;
-
-        return $this;
-    }
-
     public function getUser(): ?User
     {
         return $this->user;
@@ -202,39 +178,6 @@ class Refuel implements \JsonSerializable
 
         return $this;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getLat()
-    {
-        return $this->lat;
-    }
-
-    /**
-     * @param mixed $lat
-     */
-    public function setLat($lat): void
-    {
-        $this->lat = $lat;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLong()
-    {
-        return $this->long;
-    }
-
-    /**
-     * @param mixed $long
-     */
-    public function setLong($long): void
-    {
-        $this->long = $long;
-    }
-
 
     /**
      * @ORM\PrePersist
