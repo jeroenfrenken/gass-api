@@ -56,6 +56,8 @@ class RefuelController extends AbstractController implements ApiAuthenticationIn
 
         }
 
+        $out = array_reverse($out);
+
         return ApiResponse::okResponse($out);
 
     }
