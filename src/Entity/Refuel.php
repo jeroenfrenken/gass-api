@@ -135,7 +135,7 @@ class Refuel implements \JsonSerializable
     /**
      * @return mixed
      */
-    public function getPicture() : String
+    public function getPicture()
     {
         return $this->picture;
     }
@@ -147,7 +147,7 @@ class Refuel implements \JsonSerializable
         return $this;
     }
 
-    public function getPicturePath(): ?string
+    public function getPicturePath() : string
     {
         if ($this->picturePath !== null) {
 
