@@ -12,6 +12,8 @@ use App\Controller\Services\ActionRegisterService;
 use App\Controller\Services\TokenService;
 use App\Entity\User;
 use App\Response\ApiResponse;
+use Nelmio\ApiDocBundle\Annotation\Model;
+use Swagger\Annotations as SWG;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -20,18 +22,35 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 class AuthenticationController extends AbstractController
 {
 
+    /**
+     * @SWG\Post(description="Authenticate a user")
+     * @SWG\Parameter(
+     *     name="body",
+     *     in="body",
+     *     @SWG\Schema(type="json", ref=@Model(type=App\SwaggerModels\UserLoginModel::class))
+     * )
+     * @SWG\Response(
+     *     response=200,
+     *     description="Returns the user",
+     *     @SWG\Schema(
+     *        ref=@Model(type=App\SwaggerModels\UserAuthenticatedModel::class)
+     *     )
+     * )
+     * @SWG\Response(
+     *     response=400,
+     *     description="Bad request"
+     * )
+     * @SWG\Response(
+     *     response=500,
+     *     description="Server error"
+     * )
+     */
     public function login(
         SerializerInterface $serializer,
         TokenService $tokenService,
         ActionRegisterService $actionRegisterService,
         Request $request
     ) {
-
-//        if (
-//            !$actionRegisterService->canDoAction($request->getClientIp(), ActionRegisterService::ACTION_LOGIN)
-//        ) {
-//            return ApiResponse::rateLimit();
-//        }
 
         /** @var User $user */
         $user = $serializer->deserialize(
@@ -74,6 +93,29 @@ class AuthenticationController extends AbstractController
 
     }
 
+    /**
+     * @SWG\Post(description="Register a user")
+     * @SWG\Parameter(
+     *     name="body",
+     *     in="body",
+     *     @SWG\Schema(type="json", ref=@Model(type=App\SwaggerModels\UserCreateModel::class))
+     * )
+     * @SWG\Response(
+     *     response=200,
+     *     description="Returns the user",
+     *     @SWG\Schema(
+     *        ref=@Model(type=App\SwaggerModels\UserModel::class)
+     *     )
+     * )
+     * @SWG\Response(
+     *     response=400,
+     *     description="Bad request"
+     * )
+     * @SWG\Response(
+     *     response=500,
+     *     description="Server error"
+     * )
+     */
     public function register(
         ValidatorInterface $validator,
         SerializerInterface $serializer,

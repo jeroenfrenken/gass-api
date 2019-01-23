@@ -135,7 +135,7 @@ class Refuel implements \JsonSerializable
     /**
      * @return mixed
      */
-    public function getPicture()
+    public function getPicture() : String
     {
         return $this->picture;
     }

@@ -18,7 +18,7 @@
     </style>
 </head>
 <body>
-<redoc spec-url='https://api.gassapp.nl/swagger'></redoc>
+<redoc spec-url='https://api.gassapp.nl/doc.json'></redoc>
 <script src="https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js"> </script>
 </body>
 </html>

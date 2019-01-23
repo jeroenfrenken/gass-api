@@ -5,27 +5,23 @@
  * Date: 11/01/2019
  * Time: 13:18
  */
-
 namespace App\Controller\RefuelControllers;
-
 
 use App\Entity\Refuel;
 use App\Entity\User;
 use App\Interfaces\ApiAuthenticationInterface;
 use App\Response\ApiResponse;
+use Nelmio\ApiDocBundle\Annotation\Model;
+use Nelmio\ApiDocBundle\Annotation\Security;
+use Swagger\Annotations as SWG;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Serializer\Exception\NotNormalizableValueException;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
-use Symfony\Flex\Response;
 
 /**
- * TODO: refuel upload picture
- * TODO: refuel upload lat long
- *
  * Class RefuelController
  * @package App\Controller\RefuelControllers
  */
@@ -33,13 +29,19 @@ class RefuelController extends AbstractController implements ApiAuthenticationIn
 {
 
     /**
-     * @OA\Get(
-     *     operationId="Get all refuels of a user",
-     *     path="/refuel/get",
-     *     @OA\Response(
-     *          response="200",
-     *          description="No error"
+     * @Security(name="Authorization")
+     * @SWG\Get(description="Get all the users refuels")
+     * @SWG\Response(
+     *     response=200,
+     *     description="Returns all the refuels of a user",
+     *     @SWG\Schema(
+     *         type="array",
+     *         @SWG\Items(ref=@Model(type=App\SwaggerModels\RefuelModel::class))
      *     )
+     * )
+     * @SWG\Response(
+     *     response=401,
+     *     description="User not authenticated"
      * )
      */
     public function getAll() {
@@ -61,6 +63,25 @@ class RefuelController extends AbstractController implements ApiAuthenticationIn
 
     }
 
+    /**
+     * @Security(name="Authorization")
+     * @SWG\Get(description="Get a single refuel")
+     * @SWG\Response(
+     *     response=200,
+     *     description="Returns a single refuel based on id",
+     *     @SWG\Schema(
+     *         ref=@Model(type=App\SwaggerModels\RefuelModel::class)
+     *     )
+     * )
+     * @SWG\Response(
+     *     response=404,
+     *     description="Resource not found"
+     * )
+     * @SWG\Response(
+     *     response=401,
+     *     description="User not authenticated"
+     * )
+     */
     public function getRefuel(string $id)
     {
 
@@ -82,6 +103,34 @@ class RefuelController extends AbstractController implements ApiAuthenticationIn
 
     }
 
+    /**
+     * @Security(name="Authorization")
+     * @SWG\Post(description="Create a refuel")
+     * @SWG\Parameter(
+     *     name="body",
+     *     in="body",
+     *     @SWG\Schema(type="json", ref=@Model(type=App\SwaggerModels\RefuelCreateModel::class))
+     * )
+     * @SWG\Response(
+     *     response=200,
+     *     description="Returns the created refuel",
+     *     @SWG\Schema(
+     *        ref=@Model(type=App\SwaggerModels\RefuelModel::class)
+     *     )
+     * )
+     * @SWG\Response(
+     *     response=400,
+     *     description="Bad request"
+     * )
+     * @SWG\Response(
+     *     response=401,
+     *     description="User not authenticated"
+     * )
+     * @SWG\Response(
+     *     response=500,
+     *     description="Server error"
+     * )
+     */
     public function create(
         ValidatorInterface $validator,
         SerializerInterface $serializer,
@@ -116,6 +165,34 @@ class RefuelController extends AbstractController implements ApiAuthenticationIn
 
     }
 
+    /**
+     * @Security(name="Authorization")
+     * @SWG\Put(description="Updates a refuel")
+     * @SWG\Parameter(
+     *     name="body",
+     *     in="body",
+     *     @SWG\Schema(type="json", ref=@Model(type=App\SwaggerModels\RefuelCreateModel::class))
+     * )
+     * @SWG\Response(
+     *     response=200,
+     *     description="Returns the updated refuel",
+     *     @SWG\Schema(
+     *        ref=@Model(type=App\SwaggerModels\RefuelModel::class)
+     *     )
+     * )
+     * @SWG\Response(
+     *     response=400,
+     *     description="Bad request"
+     * )
+     * @SWG\Response(
+     *     response=401,
+     *     description="User not authenticated"
+     * )
+     * @SWG\Response(
+     *     response=500,
+     *     description="Server error"
+     * )
+     */
     public function update(
         string $id,
         Request $request,
@@ -166,6 +243,26 @@ class RefuelController extends AbstractController implements ApiAuthenticationIn
 
     }
 
+    /**
+     * @Security(name="Authorization")
+     * @SWG\Delete(description="Deletes a refuel")
+     * @SWG\Response(
+     *     response=200,
+     *     description="Resource deleted"
+     * )
+     * @SWG\Response(
+     *     response=404,
+     *     description="Resource not found"
+     * )
+     * @SWG\Response(
+     *     response=401,
+     *     description="User not authenticated"
+     * )
+     * @SWG\Response(
+     *     response=500,
+     *     description="Server error"
+     * )
+     */
     public function delete(string $id) {
 
         /** @var User $user */

@@ -45,7 +45,7 @@ refuel_get_image:
   methods: [ GET ]
 
 #  TODO move to dev routes
-swagger:
-  path: /swagger
-  controller: App\Controller\DocumentationControllers\SwaggerController::getSwagger
-  methods: [ GET ]
+app.swagger:
+  path: /doc.json
+  methods: GET
+  defaults: { _controller: nelmio_api_doc.controller.swagger }

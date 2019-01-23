@@ -1,0 +1,21 @@
+nelmio_api_doc:
+    documentation:
+        host: api.gassapp.nl
+        schemes: [https]
+        info:
+            title: Gassapp API
+            description: The api documentation of gassapp
+            version: 1.0.0
+        securityDefinitions:
+          Authorization:
+            type: token
+            description: 'Pass the authentication header like this. authentication: {token}'
+            name: Authorization
+            in: header
+        security:
+          - Authorization: []
+    areas: # to filter documented areas
+        path_patterns:
+            - ^/refuel
+            - ^/authenticate
+            - ^/user

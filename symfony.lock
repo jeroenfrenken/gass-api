@@ -65,8 +65,20 @@
     "doctrine/reflection": {
         "version": "v1.0.0"
     },
+    "exsyst/swagger": {
+        "version": "v0.4.1"
+    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
+    },
+    "nelmio/api-doc-bundle": {
+        "version": "3.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "3.0",
+            "ref": "c8e0c38e1a280ab9e37587a8fa32b251d5bc1c94"
+        }
     },
     "nikic/php-parser": {
         "version": "v4.1.1"
@@ -233,6 +245,9 @@
     "symfony/serializer-pack": {
         "version": "v1.0.2"
     },
+    "symfony/stopwatch": {
+        "version": "v4.2.2"
+    },
     "symfony/validator": {
         "version": "4.1",
         "recipe": {
@@ -258,6 +273,6 @@
         "version": "3.2.1"
     },
     "zircote/swagger-php": {
-        "version": "3.0.2"
+        "version": "2.0.13"
     }
 }

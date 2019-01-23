@@ -46,11 +46,10 @@ class ActionRegisterService
     }
 
     /**
-     * Registers a new action in the database
-     *
      * @param string $ip
      * @param string $action
      * @return bool
+     * @throws \Exception
      */
     public function registerAction(string $ip, string $action) {
 
